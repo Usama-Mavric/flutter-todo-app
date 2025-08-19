@@ -3,6 +3,8 @@ import 'package:hello_flutter/pages/counter.dart';
 import 'package:hello_flutter/pages/form.dart';
 import 'package:hello_flutter/pages/listScreen.dart';
 import 'package:hello_flutter/pages/todo.dart';
+import 'package:hello_flutter/providers/todo_provider.dart';
+import 'package:provider/provider.dart';
 
 // 🟢 Screen 1: Home
 class HomeScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final count = context.watch<TodoProvider>().todos.length;
     return Scaffold(
       appBar: AppBar(title: const Text("Home")),
       body: Padding(
@@ -25,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text("Total Todos: $count"),
             TextField(
               controller: _nameController,
               decoration: const InputDecoration(
